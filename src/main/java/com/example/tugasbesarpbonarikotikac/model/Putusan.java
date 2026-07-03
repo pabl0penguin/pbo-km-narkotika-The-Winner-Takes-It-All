@@ -162,4 +162,14 @@ public class Putusan {
             return "Berat";
     }
 
+    @Override
+    public String toString() {
+        return "Putusan{" +
+                "nomorPerkara='" + nomorPerkara + '\'' +
+                ", namaTerdakwa='" + namaTerdakwa + '\'' +
+                ", jenisNarkotika='" + jenisNarkotika + '\'' +
+                ", vonisHukuman=" + vonisHukuman +
+                '}';
+    }
+
 }
