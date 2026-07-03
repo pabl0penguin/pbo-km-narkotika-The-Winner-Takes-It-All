@@ -127,4 +127,10 @@ public class InputHandler {
         }
         throw new IllegalStateException("Melebihi batas percobaan pilihan. Proses dibatalkan.");
     }
+
+    public static int validasiUmur(String prompt, Scanner sc) {
+        return validasiIntRentang(
+                prompt, UMUR_MIN, UMUR_MAX, sc
+        );
+    }
 }
