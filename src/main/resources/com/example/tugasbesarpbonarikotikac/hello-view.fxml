@@ -33,6 +33,9 @@
 
                 <Button text="Filter" onAction="#filterData"
                         style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
+                <Button fx:id="UploadFile" text="Upload File (.csv)" maxWidth="Infinity"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white;"
+                        onAction="#UploadFile" HBox.hgrow="ALWAYS"/>
             </HBox>
         </VBox>
     </top>
