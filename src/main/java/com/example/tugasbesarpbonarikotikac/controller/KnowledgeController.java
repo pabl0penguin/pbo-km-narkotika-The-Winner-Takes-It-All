@@ -1,7 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.controller;
-import com.example.demopbonar.model.KnowledgeRepository;
-import com.example.demopbonar.model.Putusan;
-import com.example.demopbonar.model.StatistikPutusan;
+import com.example.tugasbesarpbonarikotikac.model.KnowledgeRepository;
+import com.example.tugasbesarpbonarikotikac.model.Putusan;
+import com.example.tugasbesarpbonarikotikac.model.StatistikPutusan;
 
 import java.util.ArrayList;
 public class KnowledgeController {
