@@ -124,6 +124,13 @@ public class Controller implements Initializable {
                 total, rataVonis, rataDenda, jenisTerbanyak, maxJenis, infoPeran
         ));
     }
+    public void tampilkanPesan(String pesan) {
+        Alert.AlertType type = Alert.AlertType.INFORMATION;
+        if (pesan.contains("Warning")) type = Alert.AlertType.WARNING;
+        if (pesan.contains("Failed")) type = Alert.AlertType.ERROR;
+
+        new Alert(type, pesan).showAndWait();
+    }
 }
 
 
