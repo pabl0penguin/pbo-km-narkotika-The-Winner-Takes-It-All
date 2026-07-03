@@ -77,4 +77,9 @@ public class KnowledgeController {
                 return new ArrayList<>();
         }
     }
+
+    public ArrayList<Putusan> filterByRentangVonis(int minBulan, int maxBulan) {
+        return repository.filterByRentangVonis(minBulan, maxBulan);
+    }
+
 }
