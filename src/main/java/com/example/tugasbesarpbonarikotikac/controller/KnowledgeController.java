@@ -94,4 +94,24 @@ public class KnowledgeController {
     public Putusan cariDetailByNomor(String nomor) {
         return repository.cariByNomor(nomor);
     }
+
+    private String validasiStringField(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank())
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        return nilai.trim();
+    }
+
+    private int validasiIntField(String nilai, String namaField, int min, int max) {
+        if (nilai == null || nilai.isBlank())
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        try {
+            int angka = Integer.parseInt(nilai.trim());
+            if (angka < min || angka > max)
+                throw new IllegalArgumentException(namaField + " harus antara " + min + " dan " + max + ".");
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(namaField + " harus angka bulat, bukan '" + nilai + "'.");
+        }
+    }
+
 }
