@@ -153,4 +153,13 @@ public class Putusan {
         }
     }
 
+    public String getKategoriHukuman() {
+        if(vonisHukuman < 24)
+            return "Ringan";
+        else if(vonisHukuman <= 60)
+            return "Sedang";
+        else
+            return "Berat";
+    }
+
 }
