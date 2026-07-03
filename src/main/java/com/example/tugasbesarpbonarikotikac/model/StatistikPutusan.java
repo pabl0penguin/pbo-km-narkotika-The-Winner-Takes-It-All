@@ -18,6 +18,16 @@ public class StatistikPutusan {
 
     public void hitungSemua() {
         totalPutusan = daftar.size();
+
+        double totalVonis = 0;
+
+        for(Putusan p : daftar){
+            totalVonis += p.getVonisHukuman();
+        }
+
+        if(totalPutusan > 0){
+            rataRataVonis = totalVonis / totalPutusan;
+        }
     }
 
 }
