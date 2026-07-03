@@ -71,6 +71,20 @@ public class Controller implements Initializable {
         putusanTable.setItems(filteredData);
         tampilkanStatistik();
     }
+    public void tampilkanDetail(Putusan p) {
+        tfNomorPerkara.setText(p.getNomorPerkara());
+        tfPengadilan.setText(p.getPengadilan());
+        tfTanggal.setText(p.getTanggalPutusan());
+        tfNamaTerdakwa.setText(p.getNamaTerdakwa());
+        tfUmur.setText(String.valueOf(p.getUmurTerdakwa()));
+        tfJenisNarkotika.setText(p.getJenisNarkotika());
+        tfBerat.setText(String.valueOf(p.getBeratBarangBukti()));
+        tfPasal.setText(p.getPasalDilanggar());
+        tfPeran.setText(p.getPeranTerdakwa());
+        tfVonisBulan.setText(String.valueOf(p.getVonisHukumanBulan()));
+        tfVonisDenda.setText(String.valueOf(p.getVonisDendaRupiah()));
+        tfHakim.setText(p.getNamaHakim());
+    }
 }
 
 
