@@ -82,4 +82,12 @@ public class KnowledgeController {
         return repository.filterByRentangVonis(minBulan, maxBulan);
     }
 
+    public StatistikPutusan getStatistik() {
+        return new StatistikPutusan(repository.getDaftarSemua());
+    }
+
+    public boolean hapusPutusan(String nomor) {
+        if (nomor == null || nomor.isBlank()) return false;
+        return repository.hapus(nomor);
+    }
 }
