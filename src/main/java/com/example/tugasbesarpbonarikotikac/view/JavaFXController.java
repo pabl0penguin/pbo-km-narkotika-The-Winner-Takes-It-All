@@ -85,6 +85,45 @@ public class Controller implements Initializable {
         tfVonisDenda.setText(String.valueOf(p.getVonisDendaRupiah()));
         tfHakim.setText(p.getNamaHakim());
     }
+    public void tampilkanStatistik() {
+        int total = filteredData.size();
+        double totalVonis = 0, totalDenda = 0;
+
+        for (Putusan p : filteredData) {
+            totalVonis += p.getVonisHukumanBulan();
+            totalDenda += p.getVonisDendaRupiah();
+        }
+
+        String jenisTerbanyak = "=";
+        int maxJenis = 0;
+        for (Putusan p : filteredData) {
+            String j = p.getJenisNarkotika();
+            int count = (int) filteredData.stream().filter(x -> x.getJenisNarkotika().equalsIgnoreCase(j)).count();
+            if (count > maxJenis) {
+                maxJenis = count;
+                jenisTerbanyak = j;
+            }
+        }
+
+        long pengguna = filteredData.stream().filter(p -> p.getPeranTerdakwa().toLowerCase().contains("pengguna")).count();
+        long pengedar = filteredData.stream().filter(p -> p.getPeranTerdakwa().toLowerCase().contains("pengedar") || p.getPeranTerdakwa().toLowerCase().contains("jual")).count();
+        long kurir = filteredData.stream().filter(p -> p.getPeranTerdakwa().toLowerCase().contains("kurir")).count();
+        long perantara = filteredData.stream().filter(p -> p.getPeranTerdakwa().toLowerCase().contains("perantara")).count();
+
+        double rataVonis = total == 0 ? 0 : totalVonis / total;
+        double rataDenda = total == 0 ? 0 : totalDenda / total;
+
+        String infoPeran = total == 0 ? "-" : String.format("Pengguna: %d, Pengedar/Penjual: %d, Kurir: %d, Perantara: %d",
+                pengguna, pengedar, kurir, perantara);
+
+        lblTotal.setText(String.format(
+                "Ringkasan Statistik:\n" +
+                        "• Total: %d Kasus  |  Rata Vonis: %.1f Bulan  |  Rata Denda: Rp %,.0f\n" +
+                        "• Jenis Narkotika Terbanyak: %s (%d kasus)\n" +
+                        "• Distribusi Peran: [%s]",
+                total, rataVonis, rataDenda, jenisTerbanyak, maxJenis, infoPeran
+        ));
+    }
 }
 
 
