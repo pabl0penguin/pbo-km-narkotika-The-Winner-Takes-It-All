@@ -3,6 +3,7 @@ package com.example.tugasbesarpbonarikotikac.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -248,6 +249,7 @@ public class Controller implements Initializable {
         });
         tampilkanStatistik();
     }
+    @FXML public void cariData(ActionEvent actionEvent) { applyFilter(); }
 }
 
 
