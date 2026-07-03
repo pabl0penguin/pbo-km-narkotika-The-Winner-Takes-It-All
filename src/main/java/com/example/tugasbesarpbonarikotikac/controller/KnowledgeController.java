@@ -43,4 +43,25 @@ public class KnowledgeController {
             return "ERROR: " + e.getMessage();
         }
     }
+
+    public ArrayList<Putusan> tampilkanSemua() {
+        return repository.getDaftarSemua();
+    }
+
+    public ArrayList<Putusan> cariPutusan(String keyword, String mode) {
+        if (keyword == null || keyword.isBlank()) return new ArrayList<>();
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+        switch (mode.toLowerCase()) {
+            case "nomor":
+                Putusan p = repository.cariByNomor(keyword);
+                if (p != null) hasil.add(p);
+                break;
+            case "nama":
+                hasil = repository.cariByNama(keyword);
+                break;
+            default:
+        }
+        return hasil;
+    }
 }
