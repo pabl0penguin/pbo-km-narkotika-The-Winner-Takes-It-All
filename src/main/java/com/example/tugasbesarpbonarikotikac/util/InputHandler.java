@@ -133,4 +133,30 @@ public class InputHandler {
                 prompt, UMUR_MIN, UMUR_MAX, sc
         );
     }
+
+    public static double validasiBeratBukti(String prompt, Scanner sc) {
+        int percobaan = 0;
+        while (percobaan < MAX_RETRY) {
+            System.out.print(prompt);
+            String input = sc.nextLine().trim().replace(",", ".");
+            try {
+                if (input.isEmpty()) throw new IllegalArgumentException("Berat tidak boleh kosong.");
+                double berat = Double.parseDouble(input);
+                if (berat < BERAT_MIN) {
+                    throw new IllegalArgumentException(
+                            String.format("Berat harus lebih dari %.3f gram.", BERAT_MIN));
+                }
+                return berat;
+            } catch (NumberFormatException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] '%s' bukan angka. Sisa percobaan: %d%n",
+                        input, MAX_RETRY - percobaan);
+            } catch (IllegalArgumentException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] %s Sisa percobaan: %d%n",
+                        e.getMessage(), MAX_RETRY - percobaan);
+            }
+        }
+        throw new IllegalStateException("Melebihi batas percobaan. Proses dibatalkan.");
+    }
 }
