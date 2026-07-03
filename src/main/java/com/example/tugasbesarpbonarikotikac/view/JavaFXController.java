@@ -250,6 +250,8 @@ public class Controller implements Initializable {
         tampilkanStatistik();
     }
     @FXML public void cariData(ActionEvent actionEvent) { applyFilter(); }
+    @FXML public void filterData() { applyFilter(); }
+
 }
 
 
