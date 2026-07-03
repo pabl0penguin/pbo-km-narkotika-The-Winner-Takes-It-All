@@ -84,4 +84,12 @@ public class KnowledgeRepository {
         return false;
     }
 
+    public ArrayList<Putusan> getDaftarSemua() {
+        return daftarPutusan;
+    }
+
+    public int getTotalData() {
+        return daftarPutusan.size();
+    }
+
 }
