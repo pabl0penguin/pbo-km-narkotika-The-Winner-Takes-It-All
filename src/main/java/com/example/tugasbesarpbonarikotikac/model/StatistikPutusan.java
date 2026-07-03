@@ -16,4 +16,8 @@ public class StatistikPutusan {
         this.daftar = daftar;
     }
 
+    public void hitungSemua() {
+        totalPutusan = daftar.size();
+    }
+
 }
