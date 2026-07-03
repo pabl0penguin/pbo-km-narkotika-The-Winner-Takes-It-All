@@ -72,4 +72,16 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+    public boolean hapus(String nomor) {
+
+        Putusan p = cariByNomor(nomor);
+
+        if (p != null) {
+            daftarPutusan.remove(p);
+            return true;
+        }
+
+        return false;
+    }
+
 }
