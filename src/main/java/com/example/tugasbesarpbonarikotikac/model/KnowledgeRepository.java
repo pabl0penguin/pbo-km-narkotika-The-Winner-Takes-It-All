@@ -14,4 +14,13 @@ public class KnowledgeRepository {
         daftarPutusan.add(p);
     }
 
+    public Putusan cariByNomor(String nomor) {
+        for (Putusan p : daftarPutusan) {
+            if (p.getNomorPerkara().equalsIgnoreCase(nomor)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }
