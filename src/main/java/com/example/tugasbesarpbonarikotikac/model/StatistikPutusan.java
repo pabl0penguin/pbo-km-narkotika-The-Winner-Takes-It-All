@@ -30,4 +30,14 @@ public class StatistikPutusan {
         }
     }
 
+    double totalDenda = 0;
+
+for(Putusan p : daftar){
+        totalDenda += p.getVonisDenda();
+    }
+
+if(totalPutusan > 0){
+        rataRataDenda = totalDenda / totalPutusan;
+    }
+
 }
