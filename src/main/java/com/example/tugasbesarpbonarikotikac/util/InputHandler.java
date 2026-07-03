@@ -37,4 +37,30 @@ public class InputHandler {
         throw new IllegalStateException(
                 "Melebihi batas percobaan input (" + MAX_RETRY + "x). Proses dibatalkan.");
     }
+
+    public static int validasiIntRentang(String prompt, int min, int max, Scanner sc) {
+        int percobaan = 0;
+        while (percobaan < MAX_RETRY) {
+            System.out.print(prompt);
+            String input = sc.nextLine().trim();
+            try {
+                if (input.isEmpty()) throw new IllegalArgumentException("Input tidak boleh kosong.");
+                int nilai = Integer.parseInt(input);
+                if (nilai < min || nilai > max) {
+                    throw new IllegalArgumentException(
+                            String.format("Nilai harus antara %d dan %d.", min, max));
+                }
+                return nilai;
+            } catch (NumberFormatException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] '%s' bukan angka. Sisa percobaan: %d%n",
+                        input, MAX_RETRY - percobaan);
+            } catch (IllegalArgumentException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] %s Sisa percobaan: %d%n",
+                        e.getMessage(), MAX_RETRY - percobaan);
+            }
+        }
+        throw new IllegalStateException("Melebihi batas percobaan input. Proses dibatalkan.");
+    }
 }
