@@ -36,3 +36,85 @@
             </HBox>
         </VBox>
     </top>
+
+    <center>
+        <HBox style="-fx-background-color: #F4F6F9;">
+
+            <TableView fx:id="putusanTable" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNomor" text="Nomor Perkara" prefWidth="120"/>
+                    <TableColumn fx:id="colPengadilan" text="Pengadilan" prefWidth="120"/>
+                    <TableColumn fx:id="colTanggal" text="Tanggal Putusan" prefWidth="120"/>
+                    <TableColumn fx:id="colNama" text="Nama Terdakwa" prefWidth="120"/>
+                    <TableColumn fx:id="colUmur" text="Umur" prefWidth="50"/>
+                    <TableColumn fx:id="colJenis" text="Jenis Narkotika" prefWidth="100"/>
+                    <TableColumn fx:id="colBerat" text="Berat (gram)" prefWidth="85"/>
+                    <TableColumn fx:id="colPasal" text="Pasal" prefWidth="80"/>
+                    <TableColumn fx:id="colPeran" text="Peran" prefWidth="80"/>
+                    <TableColumn fx:id="colVonisBulan" text="Vonis" prefWidth="65"/>
+                    <TableColumn fx:id="colVonisDenda" text="Denda" prefWidth="100"/>
+                    <TableColumn fx:id="colHakim" text="Hakim" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <VBox spacing="8" minWidth="360" maxWidth="360" prefWidth="360"
+                  style="-fx-padding: 15; -fx-background-color: white; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 0 1;">
+
+                <Label text="Form Data Putusan"
+                       style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: white; -fx-border-color: transparent;">
+                    <GridPane hgap="8" vgap="6">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="35" hgrow="SOMETIMES" halignment="LEFT"/>
+                            <ColumnConstraints percentWidth="65" hgrow="ALWAYS"/>
+                        </columnConstraints>
+
+                        <Label text="Nomor Perkara" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfNomorPerkara" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Pengadilan" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfPengadilan" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Tanggal Putusan" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfTanggal" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-pref-height: 26;" promptText="dd-MM-yyyy"/>
+
+                        <Label text="Nama Terdakwa" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfNamaTerdakwa" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Umur Terdakwa" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfUmur" GridPane.rowIndex="4" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Jenis Narkotika" GridPane.rowIndex="5" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfJenisNarkotika" GridPane.rowIndex="5" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Berat (gram)" GridPane.rowIndex="6" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfBerat" GridPane.rowIndex="6" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Pasal Dilanggar" GridPane.rowIndex="7" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfPasal" GridPane.rowIndex="7" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Peran Terdakwa" GridPane.rowIndex="8" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfPeran" GridPane.rowIndex="8" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+
+                        <Label text="Vonis Hukuman" GridPane.rowIndex="9" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfVonisBulan" GridPane.rowIndex="9" GridPane.columnIndex="1" style="-fx-pref-height: 26;" promptText="Bulan"/>
+
+                        <Label text="Vonis Denda" GridPane.rowIndex="10" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfVonisDenda" GridPane.rowIndex="10" GridPane.columnIndex="1" style="-fx-pref-height: 26;" promptText="Rupiah"/>
+
+                        <Label text="Nama Hakim" GridPane.rowIndex="11" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                        <TextField fx:id="tfHakim" GridPane.rowIndex="11" GridPane.columnIndex="1" style="-fx-pref-height: 26;"/>
+                    </GridPane>
+                </ScrollPane>
+
+                <HBox spacing="5" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
+                    <Button text="Tambah" onAction="#tambahData" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button text="Hapus" onAction="#hapusData" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button text="Update" onAction="#updateData" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button text="Reset" onAction="#bersihkanForm" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+
