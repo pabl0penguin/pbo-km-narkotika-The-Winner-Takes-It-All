@@ -56,4 +56,20 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+    public ArrayList<Putusan> filterByPengadilan(String pengadilan) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getPengadilan()
+                    .equalsIgnoreCase(pengadilan)) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
 }
