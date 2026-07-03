@@ -210,6 +210,13 @@ public class Controller implements Initializable {
             tampilkanPesan(" Gagal update. Periksa input tipe numerik kamu.");
         }
     }
+    @FXML
+    private void bersihkanForm() {
+        TextInputControl[] fields = {tfNomorPerkara, tfPengadilan, tfTanggal, tfNamaTerdakwa, tfUmur,
+                tfJenisNarkotika, tfBerat, tfPasal, tfPeran, tfVonisBulan, tfVonisDenda, tfHakim};
+        for (TextInputControl field : fields) field.clear();
+        putusanTable.getSelectionModel().clearSelection();
+    }
 }
 
 
