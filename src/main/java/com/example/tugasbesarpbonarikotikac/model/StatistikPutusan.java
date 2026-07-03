@@ -66,4 +66,20 @@ public class StatistikPutusan {
         }
     }
 
+    public void tampilkanLaporan() {
+
+        System.out.println("===== STATISTIK =====");
+        System.out.println("Total Putusan : " + totalPutusan);
+        System.out.println("Rata-rata Vonis : " + rataRataVonis);
+        System.out.println("Rata-rata Denda : " + rataRataDenda);
+        System.out.println("Jenis Narkotika Terbanyak : "
+                + jenisNarkotikaTerbanyak);
+
+        System.out.println("Distribusi Peran:");
+
+        for(String s : distribusiPeran){
+            System.out.println(s);
+        }
+    }
+
 }
