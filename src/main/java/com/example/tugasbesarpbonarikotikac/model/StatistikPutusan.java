@@ -82,4 +82,24 @@ public class StatistikPutusan {
         }
     }
 
+    public int getTotalPutusan() {
+        return totalPutusan;
+    }
+
+    public double getRataRataVonis() {
+        return rataRataVonis;
+    }
+
+    public double getRataRataDenda() {
+        return rataRataDenda;
+    }
+
+    public String getJenisNarkotikaTerbanyak() {
+        return jenisNarkotikaTerbanyak;
+    }
+
+    public String[] getDistribusiPeran() {
+        return distribusiPeran;
+    }
+
 }
