@@ -6,7 +6,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
@@ -16,7 +15,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller {
 
 
     @FXML
@@ -267,7 +266,8 @@ public class Controller implements Initializable {
         });
         tampilkanStatistik();
     }
-    @FXML public void cariData(ActionEvent actionEvent) { applyFilter(); }
+    @FXML
+    public void cariData(ActionEvent actionEvent) { applyFilter(); }
     @FXML public void filterData() { applyFilter(); }
 
     @FXML

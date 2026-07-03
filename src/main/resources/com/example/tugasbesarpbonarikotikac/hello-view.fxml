@@ -4,8 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.tugasbesarpbonarikotikac.view.JavaFXController"
+<BorderPane xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.tugasbesarpbonarikotikac.view.Controller"
             style="-fx-background-color: #f8f2f2;">
 
     <top>
@@ -22,7 +23,7 @@
 
                 <ComboBox fx:id="cbSearchBy" promptText="Pilih Kolom" prefWidth="135" style="-fx-pref-height: 30;"/>
 
-                <Button text="Cari" onAction="#cariData"
+                <Button text="Cari" fx:id="btnCari" onAction="#cariData"
                         style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
 
                 <Button text="Tampilkan Semua" onAction="#tampilkanSemua"
