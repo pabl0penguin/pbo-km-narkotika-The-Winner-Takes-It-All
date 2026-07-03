@@ -14,4 +14,27 @@ public class InputHandler {
 
     }
 
+    public static int validasiInt(String prompt, Scanner sc) {
+        int percobaan = 0;
+        while (percobaan < MAX_RETRY) {
+            System.out.print(prompt);
+            String input = sc.nextLine().trim();
+            try {
+                if (input.isEmpty()) {
+                    throw new IllegalArgumentException("Input tidak boleh kosong.");
+                }
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] '%s' bukan angka bulat. "
+                        + "Sisa percobaan: %d%n", input, MAX_RETRY - percobaan);
+            } catch (IllegalArgumentException e) {
+                percobaan++;
+                System.out.printf("  [ERROR] %s Sisa percobaan: %d%n",
+                        e.getMessage(), MAX_RETRY - percobaan);
+            }
+        }
+        throw new IllegalStateException(
+                "Melebihi batas percobaan input (" + MAX_RETRY + "x). Proses dibatalkan.");
+    }
 }
