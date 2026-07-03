@@ -223,4 +223,36 @@ public class InputHandler {
                     namaField + " harus berupa angka bulat, bukan '" + nilai.trim() + "'.");
         }
     }
+
+    public static double validasiDoublePositifGui(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank()) {
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        }
+        try {
+            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
+            if (angka <= 0) {
+                throw new IllegalArgumentException(namaField + " harus lebih dari 0.");
+            }
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    namaField + " harus berupa angka desimal, bukan '" + nilai.trim() + "'.");
+        }
+    }
+
+    public static double validasiDoubleNonNegatifGui(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank()) {
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        }
+        try {
+            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
+            if (angka < 0) {
+                throw new IllegalArgumentException(namaField + " tidak boleh negatif.");
+            }
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    namaField + " harus berupa angka, bukan '" + nilai.trim() + "'.");
+        }
+    }
 }
