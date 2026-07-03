@@ -217,6 +217,37 @@ public class Controller implements Initializable {
         for (TextInputControl field : fields) field.clear();
         putusanTable.getSelectionModel().clearSelection();
     }
+    private void applyFilter() {
+        String keyword = tfCari.getText().trim().toLowerCase();
+        String kriteria = cbSearchBy.getValue();
+        String selectedJenis = cbFilterJenis.getValue();
+
+        filteredData.setPredicate(p -> {
+            if (selectedJenis != null && !"Semua Jenis".equals(selectedJenis)) {
+                if (!p.getJenisNarkotika().equalsIgnoreCase(selectedJenis)) {
+                    return false;
+                }
+            }
+
+            if (!keyword.isEmpty() && kriteria != null) {
+                String valueToCompare = "";
+                if (kriteria.equals("Nomor Perkara")) {
+                    valueToCompare = p.getNomorPerkara().toLowerCase();
+                } else if (kriteria.equals("Nama Terdakwa")) {
+                    valueToCompare = p.getNamaTerdakwa().toLowerCase();
+                }
+
+                else if (kriteria.equals("Nama Pengadilan")) {
+                    valueToCompare = p.getPengadilan().toLowerCase();
+                }
+
+                return valueToCompare.contains(keyword);
+            }
+
+            return true;
+        });
+        tampilkanStatistik();
+    }
 }
 
 
