@@ -1,6 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class StatistikPutusan {
 
@@ -21,23 +22,24 @@ public class StatistikPutusan {
 
         double totalVonis = 0;
 
-        for(Putusan p : daftar){
+        for (Putusan p : daftar) {
             totalVonis += p.getVonisHukuman();
         }
 
-        if(totalPutusan > 0){
+        if (totalPutusan > 0) {
             rataRataVonis = totalVonis / totalPutusan;
         }
-    }
 
-    double totalDenda = 0;
 
-for(Putusan p : daftar){
-        totalDenda += p.getVonisDenda();
-    }
+        double totalDenda = 0;
 
-if(totalPutusan > 0){
-        rataRataDenda = totalDenda / totalPutusan;
+        for (Putusan p : daftar) {
+            totalDenda += p.getVonisDenda();
+        }
+
+        if (totalPutusan > 0) {
+            rataRataDenda = totalDenda / totalPutusan;
+        }
     }
 
 }
