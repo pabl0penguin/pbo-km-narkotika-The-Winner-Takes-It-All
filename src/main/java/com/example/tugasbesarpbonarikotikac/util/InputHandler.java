@@ -159,4 +159,10 @@ public class InputHandler {
         }
         throw new IllegalStateException("Melebihi batas percobaan. Proses dibatalkan.");
     }
+
+    public static int validasiVonisBulan(String prompt, Scanner sc) {
+        return validasiIntRentang(
+                prompt, VONIS_MIN_BULAN, VONIS_MAX_BULAN, sc
+        );
+    }
 }
