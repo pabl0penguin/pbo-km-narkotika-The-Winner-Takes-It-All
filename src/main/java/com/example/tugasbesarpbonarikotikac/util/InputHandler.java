@@ -86,4 +86,19 @@ public class InputHandler {
         }
         throw new IllegalStateException("Melebihi batas percobaan input. Proses dibatalkan.");
     }
+
+    public static String validasiString(String prompt, Scanner sc) {
+        int percobaan = 0;
+        while (percobaan < MAX_RETRY) {
+            System.out.print(prompt);
+            String input = sc.nextLine().trim();
+            if (!input.isEmpty()) {
+                return input;
+            }
+            percobaan++;
+            System.out.printf("  [ERROR] Input tidak boleh kosong. "
+                    + "Sisa percobaan: %d%n", MAX_RETRY - percobaan);
+        }
+        throw new IllegalStateException("Melebihi batas percobaan input. Proses dibatalkan.");
+    }
 }
