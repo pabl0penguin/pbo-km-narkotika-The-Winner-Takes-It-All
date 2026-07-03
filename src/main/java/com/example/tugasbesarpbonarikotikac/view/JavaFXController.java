@@ -180,6 +180,36 @@ public class Controller implements Initializable {
             tampilkanPesan(" Silakan pilih baris data pada tabel dahulu.");
         }
     }
+    @FXML
+    private void updateData() {
+        Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            tampilkanPesan(" Silakan pilih data pada tabel yang ingin diupdate!");
+            return;
+        }
+        try {
+            String[] data = inputFormPutusan();
+            selected.setNomorPerkara(data[0]);
+            selected.setPengadilan(data[1]);
+            selected.setTanggalPutusan(data[2]);
+            selected.setNamaTerdakwa(data[3]);
+            selected.setUmurTerdakwa(Integer.parseInt(data[4]));
+            selected.setJenisNarkotika(data[5]);
+            selected.setBeratBarangBukti(Double.parseDouble(data[6]));
+            selected.setPasalDilanggar(data[7]);
+            selected.setPeranTerdakwa(data[8]);
+            selected.setVonisHukumanBulan(Integer.parseInt(data[9]));
+            selected.setVonisDendaRupiah(Double.parseDouble(data[10]));
+            selected.setNamaHakim(data[11]);
+
+            putusanTable.refresh();
+            bersihkanForm();
+            tampilkanStatistik();
+            tampilkanPesan(" Data berhasil diupdate!");
+        } catch (Exception e) {
+            tampilkanPesan(" Gagal update. Periksa input tipe numerik kamu.");
+        }
+    }
 }
 
 
