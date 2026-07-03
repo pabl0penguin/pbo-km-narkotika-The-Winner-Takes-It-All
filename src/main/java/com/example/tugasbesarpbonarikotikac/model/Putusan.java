@@ -141,4 +141,16 @@ public class Putusan {
         return jumlahDibuat;
     }
 
+    public void tampilkan() {
+        System.out.println(nomorPerkara + " - " + namaTerdakwa);
+    }
+
+    public void tampilkan(boolean detail) {
+        if(detail) {
+            System.out.println(this);
+        } else {
+            tampilkan();
+        }
+    }
+
 }
