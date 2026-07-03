@@ -147,6 +147,27 @@ public class Controller implements Initializable {
                 tfHakim.getText().trim()
         };
     }
+    @FXML
+    private void tambahData() {
+        if (tfNomorPerkara.getText().trim().isEmpty() || tfNamaTerdakwa.getText().trim().isEmpty()) {
+            tampilkanPesan(" Nomor Perkara dan Nama Terdakwa wajib diisi!");
+            return;
+        }
+        try {
+            String[] data = inputFormPutusan();
+            Putusan baru = new Putusan(
+                    data[0], data[1], data[2], data[3],
+                    Integer.parseInt(data[4]), data[5], Double.parseDouble(data[6]),
+                    data[7], data[8], Integer.parseInt(data[9]), Double.parseDouble(data[10]), data[11]
+            );
+            dataPutusan.add(baru);
+            bersihkanForm();
+            tampilkanStatistik();
+            tampilkanPesan(" Data berhasil ditambahkan!");
+        } catch (Exception e) {
+            tampilkanPesan(" Format angka pada kolom Umur/Berat/Vonis keliru!");
+        }
+    }
 }
 
 
