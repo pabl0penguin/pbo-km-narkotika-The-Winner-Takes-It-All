@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class Controller implements Initializable {
 
 
@@ -24,5 +27,15 @@ public class Controller implements Initializable {
 
     private final ObservableList<Putusan> dataPutusan = FXCollections.observableArrayList();
     private FilteredList<Putusan> filteredData;
+
+    public void initialize(URL url, ResourceBundle rb) {
+        tampilkanMenu();
+        tampilkanDaftarPutusan();
+
+        putusanTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
+            if (newSel != null) tampilkanDetail(newSel);
+        });
+    }
+
 
 
