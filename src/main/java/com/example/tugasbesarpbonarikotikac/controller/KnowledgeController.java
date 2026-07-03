@@ -90,4 +90,8 @@ public class KnowledgeController {
         if (nomor == null || nomor.isBlank()) return false;
         return repository.hapus(nomor);
     }
+
+    public Putusan cariDetailByNomor(String nomor) {
+        return repository.cariByNomor(nomor);
+    }
 }
