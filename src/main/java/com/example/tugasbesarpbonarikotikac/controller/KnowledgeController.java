@@ -64,4 +64,17 @@ public class KnowledgeController {
         }
         return hasil;
     }
+
+    public ArrayList<Putusan> filterPutusan(String kriteria, String nilai) {
+        if (nilai == null || nilai.isBlank()) return new ArrayList<>();
+
+        switch (kriteria.toLowerCase()) {
+            case "jenis":
+                return repository.filterByJenis(nilai);
+            case "pengadilan":
+                return repository.filterByPengadilan(nilai);
+            default:
+                return new ArrayList<>();
+        }
+    }
 }
