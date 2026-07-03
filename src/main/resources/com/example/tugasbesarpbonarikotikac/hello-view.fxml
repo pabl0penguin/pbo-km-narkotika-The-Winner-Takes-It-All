@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.tugasbesarpbonarikotikac.view.JavaFXController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.tugasbesarpbonarikotikac.view.JavaFXController"
+            style="-fx-background-color: #f8f2f2;">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <top>
+        <VBox style="-fx-background-color: white; -fx-border-color: #fdfbfb; -fx-border-width: 0 0 1 0;">
+            <padding>
+                <Insets top="15" right="20" bottom="10" left="20"/>
+            </padding>
+            <Label text="Knowledge Management System - Putusan Pengadilan Narkotika"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 12 0 8 0;">
+                <TextField promptText="Cari data..."
+                           prefWidth="340" style="-fx-background-radius: 20; -fx-pref-height: 30;" fx:id="tfCari"/>
+
+                <ComboBox fx:id="cbSearchBy" promptText="Pilih Kolom" prefWidth="135" style="-fx-pref-height: 30;"/>
+
+                <Button text="Cari" onAction="#cariData"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
+
+                <Button text="Tampilkan Semua" onAction="#tampilkanSemua"
+                        style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-pref-width: 120; -fx-pref-height: 30;"/>
+
+                <Label text="Filter Jenis:" style="-fx-padding: 5 0 0 20;"/>
+                <ComboBox fx:id="cbFilterJenis" promptText="Semua Jenis" prefWidth="140" style="-fx-pref-height: 30;"/>
+
+                <Button text="Filter" onAction="#filterData"
+                        style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
+            </HBox>
+        </VBox>
+    </top>
