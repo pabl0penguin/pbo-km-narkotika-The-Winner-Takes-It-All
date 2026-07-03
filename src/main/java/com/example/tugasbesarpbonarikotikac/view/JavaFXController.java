@@ -168,6 +168,18 @@ public class Controller implements Initializable {
             tampilkanPesan(" Format angka pada kolom Umur/Berat/Vonis keliru!");
         }
     }
+    @FXML
+    private void hapusData() {
+        Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            dataPutusan.remove(selected);
+            bersihkanForm();
+            tampilkanStatistik();
+            tampilkanPesan(" Data berhasil dihapus.");
+        } else {
+            tampilkanPesan(" Silakan pilih baris data pada tabel dahulu.");
+        }
+    }
 }
 
 
