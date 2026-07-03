@@ -199,4 +199,28 @@ public class InputHandler {
         }
         throw new IllegalStateException("Melebihi batas percobaan. Proses dibatalkan.");
     }
+
+    public static String validasiStringGui(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank()) {
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        }
+        return nilai.trim();
+    }
+
+    public static int validasiIntGui(String nilai, String namaField, int min, int max) {
+        if (nilai == null || nilai.isBlank()) {
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        }
+        try {
+            int angka = Integer.parseInt(nilai.trim());
+            if (angka < min || angka > max) {
+                throw new IllegalArgumentException(
+                        namaField + " harus antara " + min + " dan " + max + ".");
+            }
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    namaField + " harus berupa angka bulat, bukan '" + nilai.trim() + "'.");
+        }
+    }
 }
