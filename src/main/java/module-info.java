@@ -10,6 +10,7 @@ module com.example.tugasbesarpbonarikotikac {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires javafx.swing;
 
     opens com.example.tugasbesarpbonarikotikac to javafx.fxml;
     exports com.example.tugasbesarpbonarikotikac;

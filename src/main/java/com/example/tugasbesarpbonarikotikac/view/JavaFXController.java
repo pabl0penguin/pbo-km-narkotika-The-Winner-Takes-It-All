@@ -3,12 +3,16 @@ package com.example.tugasbesarpbonarikotikac.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -218,6 +222,20 @@ public class Controller implements Initializable {
         for (TextInputControl field : fields) field.clear();
         putusanTable.getSelectionModel().clearSelection();
     }
+
+    @FXML
+    private void UploadFile() {
+        FileChooser chooser = new FileChooser();
+        JFXPanel btnUploadFile = null;
+        Stage stage = (Stage) btnUploadFile.getScene().getWindow();
+
+        File file = chooser.showOpenDialog(stage);
+
+        Controller.importData(file);
+
+        putusanTable.refresh(Controller.tampilkanSemua());
+    }
+
     private void applyFilter() {
         String keyword = tfCari.getText().trim().toLowerCase();
         String kriteria = cbSearchBy.getValue();
