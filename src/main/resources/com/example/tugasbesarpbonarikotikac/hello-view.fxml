@@ -117,4 +117,10 @@
             </VBox>
         </HBox>
     </center>
-
+    <bottom>
+        <HBox style="-fx-background-color: white; -fx-padding: 8 20; -fx-border-color: #E0E0E0; -fx-border-width: 1 0 0 0;">
+            <Label fx:id="lblTotal" text="Total: 0 data" style="-fx-text-fill: #7F8C8D; -fx-font-weight: bold;"/>
+            <Label text="Selamat datang. Silakan kelola repositori hukum KMS." style="-fx-text-fill: #7F8C8D; -fx-padding: 0 0 0 30;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
