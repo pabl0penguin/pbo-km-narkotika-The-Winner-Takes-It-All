@@ -40,4 +40,20 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+    public ArrayList<Putusan> filterByJenis(String jenis) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getJenisNarkotika()
+                    .equalsIgnoreCase(jenis)) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
 }
