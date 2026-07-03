@@ -131,6 +131,22 @@ public class Controller implements Initializable {
 
         new Alert(type, pesan).showAndWait();
     }
+    public String[] inputFormPutusan() {
+        return new String[]{
+                tfNomorPerkara.getText().trim(),
+                tfPengadilan.getText().trim(),
+                tfTanggal.getText().trim(),
+                tfNamaTerdakwa.getText().trim(),
+                tfUmur.getText().trim(),
+                tfJenisNarkotika.getText().trim(),
+                tfBerat.getText().trim(),
+                tfPasal.getText().trim(),
+                tfPeran.getText().trim(),
+                tfVonisBulan.getText().trim(),
+                tfVonisDenda.getText().trim(),
+                tfHakim.getText().trim()
+        };
+    }
 }
 
 
