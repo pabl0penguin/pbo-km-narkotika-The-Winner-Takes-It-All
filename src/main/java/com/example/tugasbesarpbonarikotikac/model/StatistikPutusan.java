@@ -1,5 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.model;
 
+import java.util.ArrayList;
+
 public class StatistikPutusan {
 
     private int totalPutusan;
@@ -7,5 +9,7 @@ public class StatistikPutusan {
     private double rataRataDenda;
     private String jenisNarkotikaTerbanyak;
     private String[] distribusiPeran;
+
+    private ArrayList<Putusan> daftar;
 
 }
