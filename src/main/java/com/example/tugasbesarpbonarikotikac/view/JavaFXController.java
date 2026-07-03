@@ -252,6 +252,13 @@ public class Controller implements Initializable {
     @FXML public void cariData(ActionEvent actionEvent) { applyFilter(); }
     @FXML public void filterData() { applyFilter(); }
 
+    @FXML
+    public void tampilkanSemua() {
+        tfCari.clear();
+        cbSearchBy.getSelectionModel().select(0);
+        cbFilterJenis.getSelectionModel().select(0);
+        applyFilter();
+    }
 }
 
 
