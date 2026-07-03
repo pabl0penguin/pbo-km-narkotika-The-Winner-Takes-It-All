@@ -23,4 +23,21 @@ public class KnowledgeRepository {
         return null;
     }
 
+    public ArrayList<Putusan> cariByNama(String nama) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getNamaTerdakwa()
+                    .toLowerCase()
+                    .contains(nama.toLowerCase())) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
 }
