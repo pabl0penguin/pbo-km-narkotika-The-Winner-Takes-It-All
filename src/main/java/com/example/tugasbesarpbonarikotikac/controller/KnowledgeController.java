@@ -114,4 +114,29 @@ public class KnowledgeController {
         }
     }
 
+    private double validasiDoublePositif(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank())
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        try {
+            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
+            if (angka <= 0)
+                throw new IllegalArgumentException(namaField + " harus lebih dari 0.");
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(namaField + " harus angka desimal, bukan '" + nilai + "'.");
+        }
+    }
+
+    private double validasiDoubleNonNegatif(String nilai, String namaField) {
+        if (nilai == null || nilai.isBlank())
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        try {
+            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
+            if (angka < 0)
+                throw new IllegalArgumentException(namaField + " tidak boleh negatif.");
+            return angka;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(namaField + " harus angka, bukan '" + nilai + "'.");
+        }
+    }
 }
