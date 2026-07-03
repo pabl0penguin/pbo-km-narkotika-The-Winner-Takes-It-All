@@ -15,4 +15,9 @@ public class Putusan {
     private String namaHakim;
 
     private static int jumlahDibuat = 0;
+
+    public Putusan() {
+        jumlahDibuat++;
+    }
+
 }
