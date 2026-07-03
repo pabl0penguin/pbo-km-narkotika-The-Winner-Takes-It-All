@@ -12,4 +12,8 @@ public class StatistikPutusan {
 
     private ArrayList<Putusan> daftar;
 
+    public StatistikPutusan(ArrayList<Putusan> daftar) {
+        this.daftar = daftar;
+    }
+
 }
