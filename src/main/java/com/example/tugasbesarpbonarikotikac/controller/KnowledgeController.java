@@ -128,7 +128,7 @@ public class KnowledgeController {
         return repository.hapus(nomor);
     }
 
-    public ArrayList<Putusan> cariPutusan(String keyword, String mode) {
+    public ArrayList<Putusan> cariPutusan(String keyword,String mode) {
 
         if (keyword == null || keyword.isBlank()) {
             return new ArrayList<>();
@@ -136,15 +136,18 @@ public class KnowledgeController {
 
         ArrayList<Putusan> hasil = new ArrayList<>();
 
-        switch (mode.toLowerCase()) {
-            case "nomor":
+        switch (mode) {
+            case "Nomor Perkara":
                 Putusan p = repository.cariByNomor(keyword);
                 if (p != null) {
                     hasil.add(p);
                 }
                 break;
-            case "nama":
+            case "Nama Terdakwa":
                 hasil = repository.cariByNama(keyword);
+                break;
+            case "Nama Pengadilan":
+                hasil = repository.filterByPengadilan(keyword);
                 break;
             default:
                 break;
