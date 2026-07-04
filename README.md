@@ -12,23 +12,104 @@
 
 # 📖 Deskripsi Proyek
 
+Aplikasi ini merupakan proyek mata kuliah **Pemrograman Berorientasi Objek (PBO)** yang dikembangkan menggunakan bahasa pemrograman **Java** dan **JavaFX**. Sistem ini dirancang untuk membantu pengguna dalam mengelola dan mencari informasi mengenai klasifikasi putusan perkara narkotika berdasarkan knowledge yang telah disusun.
+
+Beberapa konsep OOP yang diterapkan pada aplikasi ini meliputi:
+
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Abstraction
 
 
 # ⚙️ Cara Kompilasi
 
-<!-- Tambahkan langkah kompilasi di sini -->
+## 📌 Kebutuhan Sistem
+
+Sebelum melakukan kompilasi, pastikan hal berikut sudah tersedia:
+
+* ☕ Java Development Kit (**JDK 17** atau versi lebih baru)
+
+* 💻 IDE seperti **IntelliJ IDEA** / NetBeans / VS Code
+
+* 🎨 JavaFX SDK *(jika aplikasi menggunakan JavaFX)*
+
+---
+
+## 🛠️ Tahapan Kompilasi
+
+1. **Unduh atau clone repository project**
+
+   ```bash
+
+   git clone https://github.com/pabl0penguin/PBO-KM-NARKOTIKA-The-Winner-Takes-It-All.git
+
+   ```
+   
+2. **Masuk ke folder project**
+
+
+
+   ```bash
+
+   cd PBO-KM-NARKOTIKA-The-Winner-Takes-It-All
+
+   ```
+
+
+
+3. **Buka project menggunakan IDE pilihan**
+
+
+
+   Disarankan menggunakan IntelliJ IDEA agar konfigurasi lebih mudah.
+
+
+
+4. **Konfigurasi JDK**
+
+
+
+   Pastikan project sudah menggunakan JDK yang sesuai (minimal versi 17).
+
+
+
+5. **Tambahkan library JavaFX (jika diperlukan)**
+
+
+
+   * Masukkan folder `lib` dari JavaFX ke dalam project
+
+   * Atur VM Options jika menggunakan JavaFX
+
+
+
+6. **Lakukan proses build project**
+
+
+
+   Gunakan menu pada IDE:
+
+
+
+   ```
+
+   Build → Rebuild Project
+
+   ```
 
 ---
 
 # ▶️ Cara Menjalankan
 
-<!-- Tambahkan langkah menjalankan aplikasi di sini -->
-
+1. Pastikan **JDK 17+** dan **JavaFX SDK** sudah terinstall pada perangkat.
+2. Pastikan file dataset (datasetputusannarkotika) telah tersedia pada folder yang berada pada package model 
+3. Lakukan proses kompilasi (Main.java) 
 ---
 
 # 🎥 Video Demo Aplikasi
 
-📺 **Link Video Demo**
+📺 **https://youtu.be/8VV94puVvu0**
 
 >
 
