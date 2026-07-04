@@ -276,7 +276,7 @@ public class JavaFXController {
         tfCari.clear();
         cbSearchBy.getSelectionModel().select(0);
         cbFilterJenis.getSelectionModel().select(0);
-        perbaharuiTabel(Controller.tampilkanSemua);
+        perbaharuiTabel(Controller.tampilkanSemua());
 
     }
 }
