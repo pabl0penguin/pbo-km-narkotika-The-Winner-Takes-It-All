@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.tugasbesarpbonarikotikac.view.JavaFXController"
             style="-fx-background-color: #f8f2f2;">
 
@@ -22,7 +23,7 @@
 
                 <ComboBox fx:id="cbSearchBy" promptText="Pilih Kolom" prefWidth="135" style="-fx-pref-height: 30;"/>
 
-                <Button text="Cari" onAction="#cariData"
+                <Button text="Cari" fx:id="btnCari" onAction="#cariData"
                         style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
 
                 <Button text="Tampilkan Semua" onAction="#tampilkanSemua"
@@ -33,6 +34,9 @@
 
                 <Button text="Filter" onAction="#filterData"
                         style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 30;"/>
+                <Button fx:id="UploadFile" text="Upload File (.csv)" maxWidth="Infinity"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white;"
+                        onAction="#UploadFile" HBox.hgrow="ALWAYS"/>
             </HBox>
         </VBox>
     </top>
@@ -111,7 +115,7 @@
                 <HBox spacing="5" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
                     <Button text="Tambah" onAction="#tambahData" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold;"/>
                     <Button text="Hapus" onAction="#hapusData" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Update" onAction="#updateData" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button text="Update" onAction="#perbaharuiData" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
                     <Button text="Reset" onAction="#bersihkanForm" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-weight: bold;"/>
                 </HBox>
             </VBox>
