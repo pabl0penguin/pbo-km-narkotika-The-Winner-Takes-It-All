@@ -92,4 +92,15 @@ public class KnowledgeRepository {
         return daftarPutusan.size();
     }
 
+    public ArrayList<Putusan> filterByVonisRange(int vonisMin, int vonisMax) {
+        ArrayList<Putusan> hasil = new ArrayList<>();
+        for (Putusan p : daftarPutusan) {
+            int vonis = p.getVonisHukuman();
+            if (vonis >= vonisMin && vonis <= vonisMax) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
 }
