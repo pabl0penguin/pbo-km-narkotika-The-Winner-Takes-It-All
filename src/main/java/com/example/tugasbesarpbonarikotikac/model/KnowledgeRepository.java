@@ -1,4 +1,128 @@
 package com.example.tugasbesarpbonarikotikac.model;
 
+import java.util.ArrayList;
+
 public class KnowledgeRepository {
+
+    private ArrayList<Putusan> daftarPutusan;
+
+    public KnowledgeRepository() {
+        daftarPutusan = new ArrayList<>();
+    }
+
+    public void simpan(Putusan p) {
+        daftarPutusan.add(p);
+    }
+
+    public Putusan cariByNomor(String nomor) {
+        for (Putusan p : daftarPutusan) {
+            if (p.getNomorPerkara().equalsIgnoreCase(nomor)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Putusan> cariByNama(String nama) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getNamaTerdakwa()
+                    .toLowerCase()
+                    .contains(nama.toLowerCase())) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
+    public ArrayList<Putusan> filterByJenis(String jenis) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getJenisNarkotika()
+                    .equalsIgnoreCase(jenis)) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
+    public ArrayList<Putusan> filterByPengadilan(String pengadilan) {
+
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            if (p.getPengadilan()
+                    .equalsIgnoreCase(pengadilan)) {
+
+                hasil.add(p);
+            }
+        }
+
+        return hasil;
+    }
+
+    public boolean hapus(String nomor) {
+
+        Putusan p = cariByNomor(nomor);
+
+        if (p != null) {
+            daftarPutusan.remove(p);
+            return true;
+        }
+
+        return false;
+    }
+
+    public ArrayList<Putusan> getDaftarSemua() {
+        return daftarPutusan;
+    }
+
+    public int getTotalData() {
+        return daftarPutusan.size();
+    }
+
+    public ArrayList<Putusan> filterByVonisRange(int vonisMin, int vonisMax) {
+        ArrayList<Putusan> hasil = new ArrayList<>();
+        for (Putusan p : daftarPutusan) {
+            int vonis = p.getVonisHukuman();
+            if (vonis >= vonisMin && vonis <= vonisMax) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
+    public void update(String nomor, Putusan dataBaru) {
+        Putusan p = cariByNomor(nomor);
+        if (p != null) {
+            daftarPutusan.remove(p);
+            daftarPutusan.add(dataBaru);
+        }
+    }
+
+    public ArrayList<Putusan> filterByRentangVonis(int minBulan, int maxBulan) {
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            int vonis = p.getVonisHukuman();
+
+            if (vonis >= minBulan && vonis <= maxBulan) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
 }
