@@ -171,25 +171,4 @@ public class Putusan {
                 ", vonisHukuman=" + vonisHukuman +
                 '}';
     }
-
-    public int getVonisHukuman() {
-        return vonisHukuman.get();
-    }
-    public void setVonisHukuman(int vonisHukuman) {
-        this.vonisHukuman.set(vonisHukuman);
-    }
-    public SimpleIntegerProperty vonisHukumanProperty() {
-        return vonisHukuman;
-    }
-
-    public double getVonisDenda() {
-        return vonisDenda.get();
-    }
-    public void setVonisDenda(double vonisDenda) {
-        this.vonisDenda.set(vonisDenda);
-    }
-    public SimpleDoubleProperty vonisDendaProperty() {
-        return vonisDenda;
-    }
-
 }
