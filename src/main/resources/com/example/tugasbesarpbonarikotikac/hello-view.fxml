@@ -115,7 +115,7 @@
                 <HBox spacing="5" alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
                     <Button text="Tambah" onAction="#tambahData" style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-weight: bold;"/>
                     <Button text="Hapus" onAction="#hapusData" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Update" onAction="#updateData" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button text="Update" onAction="#perbaharuiData" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-weight: bold;"/>
                     <Button text="Reset" onAction="#bersihkanForm" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-font-weight: bold;"/>
                 </HBox>
             </VBox>

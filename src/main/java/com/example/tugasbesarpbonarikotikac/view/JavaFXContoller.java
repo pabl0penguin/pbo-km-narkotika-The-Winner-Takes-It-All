@@ -1,5 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.view;
 
+import com.example.tugasbesarpbonarikotikac.controller.KnowledgeController;
+import com.example.tugasbesarpbonarikotikac.model.Putusan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller {
@@ -41,6 +44,7 @@ public class Controller {
 
     private final ObservableList<Putusan> dataPutusan = FXCollections.observableArrayList();
     private FilteredList<Putusan> filteredData;
+    private KnowledgeController Controller;
 
     public void initialize(URL url, ResourceBundle rb) {
         tampilkanMenu();
@@ -153,18 +157,21 @@ public class Controller {
     }
     @FXML
     private void tambahData() {
-        if (tfNomorPerkara.getText().trim().isEmpty() || tfNamaTerdakwa.getText().trim().isEmpty()) {
-            tampilkanPesan(" Nomor Perkara dan Nama Terdakwa wajib diisi!");
-            return;
-        }
-        try {
-            String[] data = inputFormPutusan();
-            Putusan baru = new Putusan(
-                    data[0], data[1], data[2], data[3],
-                    Integer.parseInt(data[4]), data[5], Double.parseDouble(data[6]),
-                    data[7], data[8], Integer.parseInt(data[9]), Double.parseDouble(data[10]), data[11]
-            );
-            dataPutusan.add(baru);
+        try{
+            Controller.tambahPutusan(
+                tfNomorPerkara.getText(),
+                tfPengadilan.getText(),
+                tfTanggal.getText(),
+                        tfNamaTerdakwa.getText(),
+                        tfUmur.getText(),
+                        tfJenisNarkotika.getText(),
+                        tfBerat.getText(),
+                        tfPasal.getText(),
+                        tfPeran.getText(),
+                        tfVonisBulan.getText(),
+                        tfVonisDenda.getText(),
+                        tfHakim.getText()
+                        );
             bersihkanForm();
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil ditambahkan!");
@@ -176,7 +183,7 @@ public class Controller {
     private void hapusData() {
         Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            dataPutusan.remove(selected);
+          Controller.hapusPutusan(selected);
             bersihkanForm();
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil dihapus.");
@@ -185,26 +192,27 @@ public class Controller {
         }
     }
     @FXML
-    private void updateData() {
+    private void perbaharuiData() {
         Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
             tampilkanPesan(" Silakan pilih data pada tabel yang ingin diupdate!");
             return;
         }
         try {
-            String[] data = inputFormPutusan();
-            selected.setNomorPerkara(data[0]);
-            selected.setPengadilan(data[1]);
-            selected.setTanggalPutusan(data[2]);
-            selected.setNamaTerdakwa(data[3]);
-            selected.setUmurTerdakwa(Integer.parseInt(data[4]));
-            selected.setJenisNarkotika(data[5]);
-            selected.setBeratBarangBukti(Double.parseDouble(data[6]));
-            selected.setPasalDilanggar(data[7]);
-            selected.setPeranTerdakwa(data[8]);
-            selected.setVonisHukumanBulan(Integer.parseInt(data[9]));
-            selected.setVonisDendaRupiah(Double.parseDouble(data[10]));
-            selected.setNamaHakim(data[11]);
+            Controller.updatePutusan(selected,
+                    tfNomorPerkara.getText(),
+                    tfPengadilan.getText(),
+                    tfTanggal.getText(),
+                    tfNamaTerdakwa.getText(),
+                    tfUmur.getText(),
+                    tfJenisNarkotika.getText(),
+                    tfBerat.getText(),
+                    tfPasal.getText(),
+                    tfPeran.getText(),
+                    tfVonisBulan.getText(),
+                    tfVonisDenda.getText(),
+                    tfHakim.getText()
+            );
 
             putusanTable.refresh();
             bersihkanForm();
@@ -216,10 +224,19 @@ public class Controller {
     }
     @FXML
     private void bersihkanForm() {
-        TextInputControl[] fields = {tfNomorPerkara, tfPengadilan, tfTanggal, tfNamaTerdakwa, tfUmur,
-                tfJenisNarkotika, tfBerat, tfPasal, tfPeran, tfVonisBulan, tfVonisDenda, tfHakim};
-        for (TextInputControl field : fields) field.clear();
-        putusanTable.getSelectionModel().clearSelection();
+                tfNomorPerkara.clear();
+                tfPengadilan.clear();
+                tfTanggal.clear();
+                tfNamaTerdakwa.clear();
+                tfUmur.clear();
+                tfJenisNarkotika.clear();
+                tfBerat.clear();
+                tfPasal.clear();
+                tfPeran.clear();
+                tfVonisBulan.clear();
+                tfVonisDenda.clear();
+                tfHakim.clear();
+        ;
     }
 
     @FXML
@@ -235,47 +252,26 @@ public class Controller {
         putusanTable.refresh(Controller.tampilkanSemua());
     }
 
-    private void applyFilter() {
-        String keyword = tfCari.getText().trim().toLowerCase();
-        String kriteria = cbSearchBy.getValue();
-        String selectedJenis = cbFilterJenis.getValue();
-
-        filteredData.setPredicate(p -> {
-            if (selectedJenis != null && !"Semua Jenis".equals(selectedJenis)) {
-                if (!p.getJenisNarkotika().equalsIgnoreCase(selectedJenis)) {
-                    return false;
-                }
-            }
-
-            if (!keyword.isEmpty() && kriteria != null) {
-                String valueToCompare = "";
-                if (kriteria.equals("Nomor Perkara")) {
-                    valueToCompare = p.getNomorPerkara().toLowerCase();
-                } else if (kriteria.equals("Nama Terdakwa")) {
-                    valueToCompare = p.getNamaTerdakwa().toLowerCase();
-                }
-
-                else if (kriteria.equals("Nama Pengadilan")) {
-                    valueToCompare = p.getPengadilan().toLowerCase();
-                }
-
-                return valueToCompare.contains(keyword);
-            }
-
-            return true;
-        });
-        tampilkanStatistik();
+    private void perbaharuiTabel(ArrayList<Putusan> daftar) {
+        dataPutusan.setAll();
+        putusanTable.refresh();
     }
     @FXML
-    public void cariData(ActionEvent actionEvent) { applyFilter(); }
-    @FXML public void filterData() { applyFilter(); }
+    public void cariData(ActionEvent actionEvent) {
+        String kataKunci = tfCari.getText();
+        String mode = tfCari .getText();
+        ArrayList<Putusan> hasil = Controller.cariPutusan(kataKunci, mode);
+        perbaharuiTabel(hasil);
+        tampilkanPesan("Data telah ditemukan");
+    }
+    @FXML public void filterData() {  }
 
     @FXML
     public void tampilkanSemua() {
         tfCari.clear();
         cbSearchBy.getSelectionModel().select(0);
         cbFilterJenis.getSelectionModel().select(0);
-        applyFilter();
+
     }
 }
 
