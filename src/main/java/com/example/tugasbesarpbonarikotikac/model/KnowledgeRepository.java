@@ -103,4 +103,26 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+    public void update(String nomor, Putusan dataBaru) {
+        Putusan p = cariByNomor(nomor);
+        if (p != null) {
+            daftarPutusan.remove(p);
+            daftarPutusan.add(dataBaru);
+        }
+    }
+
+    public ArrayList<Putusan> filterByRentangVonis(int minBulan, int maxBulan) {
+        ArrayList<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : daftarPutusan) {
+
+            int vonis = p.getVonisHukuman();
+
+            if (vonis >= minBulan && vonis <= maxBulan) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
 }
