@@ -1,7 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.util;
 
 import com.example.tugasbesarpbonarikotikac.model.Putusan;
-import org.apache.commons.CSVFormat;
+import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
@@ -23,7 +23,7 @@ public class FileSettings {
                 .setTrim(true)// Otomatis menghapus spasi di awal/akhir teks kolom
                 .build();
 
-        try (Reader reader = new FileReader(file);
+        try (Reader reader = new FileReader(doc);
              CSVParser csvParser = new CSVParser(reader, format)) {
 
             for (CSVRecord record : csvParser) {
@@ -68,7 +68,7 @@ public class FileSettings {
                         namaHakim
                 );
 
-                daftar.add(p);
+                list.add(p);
             }
 
         } catch (IOException e) {
@@ -77,6 +77,6 @@ public class FileSettings {
             System.err.println("Tidak bisa melakukan parsing angka: " + e.getMessage());
         }
 
-        return daftar;
+        return list;
     }
 }
