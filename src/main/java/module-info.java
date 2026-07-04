@@ -11,6 +11,7 @@ module com.example.tugasbesarpbonarikotikac {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires javafx.swing;
+    requires org.apache.commons.csv;
 
     exports com.example.tugasbesarpbonarikotikac.app;
     opens com.example.tugasbesarpbonarikotikac.app to javafx.fxml;
