@@ -1,73 +1,163 @@
 package com.example.tugasbesarpbonarikotikac.controller;
+
 import com.example.tugasbesarpbonarikotikac.model.KnowledgeRepository;
 import com.example.tugasbesarpbonarikotikac.model.Putusan;
 import com.example.tugasbesarpbonarikotikac.model.StatistikPutusan;
+import com.example.tugasbesarpbonarikotikac.util.InputSettings;
 
+import java.io.File;
 import java.util.ArrayList;
+
 public class KnowledgeController {
 
     private final KnowledgeRepository repository;
+    private final Putusan putusan;
 
-    public KnowledgeController(KnowledgeRepository repository) {
+    public KnowledgeController(KnowledgeRepository repository, Putusan putusan) {
         this.repository = repository;
-    }
-
-    public String tambahPutusan(String[] data) {
-        if (data == null || data.length < 12) {
-            return "ERROR: Data tidak lengkap (diharapkan 12 field).";
-        }
-        try {
-            String nomorPerkara = validasiStringField(data[0], "Nomor Perkara");
-            String pengadilan = validasiStringField(data[1], "Pengadilan");
-            String tanggal = validasiStringField(data[2], "Tanggal Putusan");
-            String namaTerdakwa = validasiStringField(data[3], "Nama Terdakwa");
-            int umur = validasiIntField(data[4], "Umur Terdakwa", 10, 100);
-            String jenis = validasiStringField(data[5], "Jenis Narkotika");
-            double berat = validasiDoublePositif(data[6], "Berat Barang Bukti");
-            String pasal = validasiStringField(data[7], "Pasal Dilanggar");
-            String peran = validasiStringField(data[8], "Peran Terdakwa");
-            int vonis = validasiIntField(data[9], "Vonis Hukuman", 1, 600);
-            double denda = validasiDoubleNonNegatif(data[10], "Vonis Denda");
-            String hakim = validasiStringField(data[11], "Nama Hakim");
-
-            if (repository.cariByNomor(nomorPerkara) != null) {
-                return "ERROR: Nomor perkara '" + nomorPerkara + "' sudah ada dalam sistem.";
-            }
-
-            Putusan p = new Putusan(nomorPerkara, pengadilan, tanggal, namaTerdakwa,
-                    umur, jenis, berat, pasal, peran, vonis, denda, hakim);
-            repository.simpan(p);
-            return "OK: Putusan berhasil ditambahkan. Total data: " + repository.getTotalData();
-
-        } catch (IllegalArgumentException e) {
-            return "ERROR: " + e.getMessage();
-        }
+        this.putusan = putusan;
     }
 
     public ArrayList<Putusan> tampilkanSemua() {
         return repository.getDaftarSemua();
     }
 
+    public String tambahPutusan(
+            String nomorPerkaraTxt,
+            String pengadilanTxt,
+            String tanggalTxt,
+            String namaTerdakwaTxt,
+            String umurTxt,
+            String jenisNarkotikaTxt,
+            String beratTxt,
+            String pasalTxt,
+            String peranTxt,
+            String vonisHukumanTxt,
+            String vonisDendaTxt,
+            String hakimTxt
+    ) {
+
+        String nomorPerkara = InputSettings.validasiKolomString(nomorPerkaraTxt, "Nomor Perkara");
+        String pengadilan = InputSettings.validasiKolomString(pengadilanTxt, "Pengadilan");
+        String tanggal = InputSettings.validasiKolomString(tanggalTxt, "Tanggal");
+        String namaTerdakwa = InputSettings.validasiKolomString(namaTerdakwaTxt, "Nama Terdakwa");
+        String jenisNarkotika = InputSettings.validasiKolomString(jenisNarkotikaTxt, "Jenis Narkotika");
+        String pasal = InputSettings.validasiKolomString(pasalTxt, "Pasal");
+        String peran = InputSettings.validasiKolomString(peranTxt, "Peran");
+        String hakim = InputSettings.validasiKolomString(hakimTxt, "Hakim");
+
+        if (repository.cariByNomor(nomorPerkara) != null) {
+            throw new IllegalArgumentException(
+                    "Nomor perkara \"" + nomorPerkara + "\" sudah terdaftar."
+            );
+        }
+        int umur = InputSettings.validasiKolomInt(umurTxt, "Umur Terdakwa");
+        double berat = InputSettings.validasiKolomDouble(beratTxt, "Berat Barang Bukti");
+        int vonisHukuman = InputSettings.validasiKolomInt(vonisHukumanTxt, "Vonis Hukuman");
+        float vonisDenda = InputSettings.validasiKolomFloat(vonisDendaTxt, "Vonis Denda");
+
+        Putusan pts = new Putusan(
+                nomorPerkara,
+                pengadilan,
+                tanggal,
+                namaTerdakwa,
+                umur,
+                jenisNarkotika,
+                berat,
+                pasal,
+                peran,
+                vonisHukuman,
+                vonisDenda,
+                hakim
+        );
+
+        repository.simpan(pts);
+
+        return "Data berhasil ditambahkan.";
+    }
+
+    public boolean updatePutusan(
+            String nomor,
+            String nomorPerkaraTxt,
+            String pengadilanTxt,
+            String tanggalTxt,
+            String namaTerdakwaTxt,
+            String umurTxt,
+            String jenisNarkotikaTxt,
+            String beratTxt,
+            String pasalTxt,
+            String peranTxt,
+            String vonisHukumanTxt,
+            String vonisDendaTxt,
+            String hakimTxt
+    ) {
+
+        String nomorPerkara = InputSettings.validasiKolomString(nomorPerkaraTxt, "Nomor Perkara");
+        String pengadilan = InputSettings.validasiKolomString(pengadilanTxt, "Pengadilan");
+        String tanggal = InputSettings.validasiKolomString(tanggalTxt, "Tanggal");
+        String namaTerdakwa = InputSettings.validasiKolomString(namaTerdakwaTxt, "Nama Terdakwa");
+        String jenisNarkotika = InputSettings.validasiKolomString(jenisNarkotikaTxt, "Jenis Narkotika");
+        String pasal = InputSettings.validasiKolomString(pasalTxt, "Pasal");
+        String peran = InputSettings.validasiKolomString(peranTxt, "Peran");
+        String hakim = InputSettings.validasiKolomString(hakimTxt, "Hakim");
+
+        int umur = InputSettings.validasiKolomInt(umurTxt, "Umur Terdakwa");
+        double berat = InputSettings.validasiKolomDouble(beratTxt, "Berat Barang Bukti");
+        int vonisHukuman = InputSettings.validasiKolomInt(vonisHukumanTxt, "Vonis Hukuman");
+        float vonisDenda = InputSettings.validasiKolomFloat(vonisDendaTxt, "Vonis Denda");
+
+        Putusan dataBaru = new Putusan(
+                nomorPerkara,
+                pengadilan,
+                tanggal,
+                namaTerdakwa,
+                umur,
+                jenisNarkotika,
+                berat,
+                pasal,
+                peran,
+                vonisHukuman,
+                vonisDenda,
+                hakim
+        );
+
+        repository.update(nomor, dataBaru);
+        return true;
+    }
+
+    public boolean hapusPutusan(String nomor) {
+        return repository.hapus(nomor);
+    }
+
     public ArrayList<Putusan> cariPutusan(String keyword, String mode) {
-        if (keyword == null || keyword.isBlank()) return new ArrayList<>();
+
+        if (keyword == null || keyword.isBlank()) {
+            return new ArrayList<>();
+        }
 
         ArrayList<Putusan> hasil = new ArrayList<>();
+
         switch (mode.toLowerCase()) {
             case "nomor":
                 Putusan p = repository.cariByNomor(keyword);
-                if (p != null) hasil.add(p);
+                if (p != null) {
+                    hasil.add(p);
+                }
                 break;
             case "nama":
                 hasil = repository.cariByNama(keyword);
                 break;
             default:
+                break;
         }
         return hasil;
     }
 
     public ArrayList<Putusan> filterPutusan(String kriteria, String nilai) {
-        if (nilai == null || nilai.isBlank()) return new ArrayList<>();
-
+        if (nilai == null || nilai.isBlank()) {
+            return new ArrayList<>();
+        }
+        
         switch (kriteria.toLowerCase()) {
             case "jenis":
                 return repository.filterByJenis(nilai);
@@ -86,57 +176,26 @@ public class KnowledgeController {
         return new StatistikPutusan(repository.getDaftarSemua());
     }
 
-    public boolean hapusPutusan(String nomor) {
-        if (nomor == null || nomor.isBlank()) return false;
-        return repository.hapus(nomor);
-    }
-
-    public Putusan cariDetailByNomor(String nomor) {
-        return repository.cariByNomor(nomor);
-    }
-
-    private String validasiStringField(String nilai, String namaField) {
-        if (nilai == null || nilai.isBlank())
-            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
-        return nilai.trim();
-    }
-
-    private int validasiIntField(String nilai, String namaField, int min, int max) {
-        if (nilai == null || nilai.isBlank())
-            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+    public void importData(File file) {
         try {
-            int angka = Integer.parseInt(nilai.trim());
-            if (angka < min || angka > max)
-                throw new IllegalArgumentException(namaField + " harus antara " + min + " dan " + max + ".");
-            return angka;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(namaField + " harus angka bulat, bukan '" + nilai + "'.");
+            ArrayList<Putusan> data = txtFileHandler.bacaFile(file);
+            for (Putusan p : data) {
+                repository.simpan(p);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
-    private double validasiDoublePositif(String nilai, String namaField) {
-        if (nilai == null || nilai.isBlank())
-            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
-        try {
-            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
-            if (angka <= 0)
-                throw new IllegalArgumentException(namaField + " harus lebih dari 0.");
-            return angka;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(namaField + " harus angka desimal, bukan '" + nilai + "'.");
+    public ArrayList<Putusan> filterByRentangVonis(String vonisMinStr, String vonisMaxStr) {
+        int vonisMin = InputSettings.validasiKolomInt(vonisMinStr, "Vonis Minimal");
+        int vonisMax = InputSettings.validasiKolomInt(vonisMaxStr, "Vonis Maksimal");
+        if (vonisMin > vonisMax) {
+            throw new IllegalArgumentException(
+                    "Vonis Minimal tidak boleh lebih besar dari Vonis Maksimal."
+            );
         }
-    }
 
-    private double validasiDoubleNonNegatif(String nilai, String namaField) {
-        if (nilai == null || nilai.isBlank())
-            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
-        try {
-            double angka = Double.parseDouble(nilai.trim().replace(",", "."));
-            if (angka < 0)
-                throw new IllegalArgumentException(namaField + " tidak boleh negatif.");
-            return angka;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(namaField + " harus angka, bukan '" + nilai + "'.");
-        }
+        return repository.filterByVonisRange(vonisMin, vonisMax);
     }
 }
