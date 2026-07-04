@@ -171,4 +171,12 @@ public class Putusan {
                 ", vonisHukuman=" + vonisHukuman +
                 '}';
     }
+    public double getVonisDendaRupiah() {
+        return vonisDenda;
+    }
+
+    public double getVonisHukumanBulan() {
+        return vonisHukuman;
+    }
+
 }
