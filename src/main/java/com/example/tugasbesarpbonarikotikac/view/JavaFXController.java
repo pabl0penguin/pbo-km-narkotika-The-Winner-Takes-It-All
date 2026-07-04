@@ -199,7 +199,7 @@ public class JavaFXController {
             return;
         }
         try {
-            Controller.updatePutusan(selected,
+            Controller.updatePutusan(String.valueOf(selected),
                     tfNomorPerkara.getText(),
                     tfPengadilan.getText(),
                     tfTanggal.getText(),
@@ -249,7 +249,7 @@ public class JavaFXController {
 
         Controller.importData(file);
 
-        putusanTable.refresh(Controller.tampilkanSemua());
+        putusanTable.refresh();
     }
 
     private void perbaharuiTabel(ArrayList<Putusan> daftar) {
