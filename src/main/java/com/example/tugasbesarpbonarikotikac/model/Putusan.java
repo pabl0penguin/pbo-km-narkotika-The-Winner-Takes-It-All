@@ -175,7 +175,7 @@ public class Putusan {
         return vonisDenda;
     }
 
-    public double getVonisHukumanBulan() {
+    public int getVonisHukumanBulan() {
         return vonisHukuman;
     }
 
