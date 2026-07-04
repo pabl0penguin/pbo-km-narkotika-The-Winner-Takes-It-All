@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.tugasbesarpbonarikotikac.view.Controller"
+            fx:controller="com.example.tugasbesarpbonarikotikac.view.JavaFXController"
             style="-fx-background-color: #f8f2f2;">
 
     <top>
