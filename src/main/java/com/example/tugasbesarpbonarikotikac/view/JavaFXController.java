@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.fxml.Initializable;
 
 import java.io.File;
 import java.net.URL;
@@ -46,7 +47,12 @@ public class JavaFXController {
     private FilteredList<Putusan> filteredData;
     private KnowledgeController Controller;
 
-    public void initialize(URL url, ResourceBundle rb) {
+    public void setController(KnowledgeController Controller){
+        this.Controller = Controller;
+    }
+
+    @FXML
+    public void initialize() {
         tampilkanMenu();
         tampilkanDaftarPutusan();
 
