@@ -1,7 +1,7 @@
 package com.example.tugasbesarpbonarikotikac.util;
 
 import com.example.tugasbesarpbonarikotikac.model.Putusan;
-import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
