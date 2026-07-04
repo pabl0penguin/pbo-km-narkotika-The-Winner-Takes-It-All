@@ -12,8 +12,6 @@ module com.example.tugasbesarpbonarikotikac {
     requires com.almasb.fxgl.all;
     requires javafx.swing;
 
-    opens com.example.tugasbesarpbonarikotikac to javafx.fxml;
-    exports com.example.tugasbesarpbonarikotikac;
     exports com.example.tugasbesarpbonarikotikac.app;
     opens com.example.tugasbesarpbonarikotikac.app to javafx.fxml;
     exports com.example.tugasbesarpbonarikotikac.view;
