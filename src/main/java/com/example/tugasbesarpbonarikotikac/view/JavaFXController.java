@@ -259,8 +259,9 @@ public class JavaFXController {
     }
 
     private void perbaharuiTabel(ArrayList<Putusan> daftar) {
-        dataPutusan.setAll();
+        dataPutusan.setAll(daftar);
         putusanTable.refresh();
+
     }
     @FXML
     public void cariData(ActionEvent actionEvent) {
