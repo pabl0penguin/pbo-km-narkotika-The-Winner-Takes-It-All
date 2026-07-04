@@ -12,12 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.fxml.Initializable;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class JavaFXController {
 
@@ -145,22 +142,6 @@ public class JavaFXController {
 
         new Alert(type, pesan).showAndWait();
     }
-    public String[] inputFormPutusan() {
-        return new String[]{
-                tfNomorPerkara.getText().trim(),
-                tfPengadilan.getText().trim(),
-                tfTanggal.getText().trim(),
-                tfNamaTerdakwa.getText().trim(),
-                tfUmur.getText().trim(),
-                tfJenisNarkotika.getText().trim(),
-                tfBerat.getText().trim(),
-                tfPasal.getText().trim(),
-                tfPeran.getText().trim(),
-                tfVonisBulan.getText().trim(),
-                tfVonisDenda.getText().trim(),
-                tfHakim.getText().trim()
-        };
-    }
     @FXML
     private void tambahData() {
         try{
@@ -179,6 +160,7 @@ public class JavaFXController {
                         tfHakim.getText()
                         );
             bersihkanForm();
+            perbaharuiTabel(Controller.tampilkanSemua());
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil ditambahkan!");
         } catch (Exception e) {
@@ -187,25 +169,29 @@ public class JavaFXController {
     }
     @FXML
     private void hapusData() {
-        Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-          Controller.hapusPutusan(String.valueOf(selected));
+        String ID = tfNomorPerkara.getText();
+        System.out.println(ID);
+        if (ID != null) {
+            Controller.hapusPutusan(ID);
             bersihkanForm();
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil dihapus.");
+            perbaharuiTabel(Controller.tampilkanSemua());
         } else {
             tampilkanPesan(" Silakan pilih baris data pada tabel dahulu.");
         }
     }
+
     @FXML
     private void perbaharuiData() {
-        Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
-        if (selected == null) {
+        String ID = tfNomorPerkara.getText();
+        if (ID == null) {
             tampilkanPesan(" Silakan pilih data pada tabel yang ingin diupdate!");
             return;
         }
         try {
-            Controller.updatePutusan(String.valueOf(selected),
+            Controller.updatePutusan(
+                    ID,
                     tfNomorPerkara.getText(),
                     tfPengadilan.getText(),
                     tfTanggal.getText(),
@@ -224,6 +210,7 @@ public class JavaFXController {
             bersihkanForm();
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil diupdate!");
+            perbaharuiTabel(Controller.tampilkanSemua());
         } catch (Exception e) {
             tampilkanPesan(" Gagal update. Periksa input tipe numerik kamu.");
         }
