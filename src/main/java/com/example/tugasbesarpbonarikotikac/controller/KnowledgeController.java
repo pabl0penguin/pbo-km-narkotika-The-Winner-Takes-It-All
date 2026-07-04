@@ -177,7 +177,7 @@ public class KnowledgeController {
 
     public void importData(File file) {
         try {
-            ArrayList<Putusan> data = txtFileHandler.bacaFile(file);
+            ArrayList<Putusan> data = FileSettings.readDoc(file);
             for (Putusan p : data) {
                 repository.simpan(p);
             }
