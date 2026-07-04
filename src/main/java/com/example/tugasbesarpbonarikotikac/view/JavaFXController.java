@@ -183,7 +183,7 @@ public class JavaFXController {
     private void hapusData() {
         Putusan selected = putusanTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-          Controller.hapusPutusan(selected);
+          Controller.hapusPutusan(String.valueOf(selected));
             bersihkanForm();
             tampilkanStatistik();
             tampilkanPesan(" Data berhasil dihapus.");
