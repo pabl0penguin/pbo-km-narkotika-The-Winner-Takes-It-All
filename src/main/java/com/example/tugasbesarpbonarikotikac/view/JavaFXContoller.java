@@ -259,7 +259,7 @@ public class Controller {
     @FXML
     public void cariData(ActionEvent actionEvent) {
         String kataKunci = tfCari.getText();
-        String mode = tfSearchMode.getValue();
+        String mode = tfCari .getText();
         ArrayList<Putusan> hasil = Controller.cariPutusan(kataKunci, mode);
         perbaharuiTabel(hasil);
         tampilkanPesan("Data telah ditemukan");
