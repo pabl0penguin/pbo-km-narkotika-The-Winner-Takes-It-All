@@ -242,9 +242,9 @@ public class JavaFXController {
 
         File file = chooser.showOpenDialog(stage);
         System.out.println(file);
-        tampilkanStatistik();
         Controller.importData(file);
         perbaharuiTabel(Controller.tampilkanSemua());
+        tampilkanStatistik();
     }
 
     private void perbaharuiTabel(ArrayList<Putusan> daftar) {
@@ -255,18 +255,28 @@ public class JavaFXController {
     @FXML
     public void cariData(ActionEvent actionEvent) {
         String kataKunci = tfCari.getText();
-        String mode = tfCari .getText();
-        ArrayList<Putusan> hasil = Controller.cariPutusan(kataKunci, mode);
+        String mode = cbSearchBy .getValue();
+        System.out.println(mode);
+        ArrayList<Putusan> hasil = Controller.cariPutusan(kataKunci,mode);
+        tampilkanPesan(+hasil.size()+" Data telah ditemukan");
         perbaharuiTabel(hasil);
-        tampilkanPesan("Data telah ditemukan");
     }
-    @FXML public void filterData() {  }
+
+    @FXML
+    public void filterData() {
+        String jenis = cbFilterJenis.getValue();
+        ArrayList<Putusan> hasil = Controller.filterPutusan(jenis);
+
+        perbaharuiTabel(hasil);
+        tampilkanPesan("Ditemukan " + hasil.size() + " data.");
+    }
 
     @FXML
     public void tampilkanSemua() {
         tfCari.clear();
         cbSearchBy.getSelectionModel().select(0);
         cbFilterJenis.getSelectionModel().select(0);
+        perbaharuiTabel(Controller.tampilkanSemua);
 
     }
 }
