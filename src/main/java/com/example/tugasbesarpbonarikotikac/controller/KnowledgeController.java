@@ -4,6 +4,7 @@ import com.example.tugasbesarpbonarikotikac.model.KnowledgeRepository;
 import com.example.tugasbesarpbonarikotikac.model.Putusan;
 import com.example.tugasbesarpbonarikotikac.model.StatistikPutusan;
 import com.example.tugasbesarpbonarikotikac.util.InputSettings;
+import com.example.tugasbesarpbonarikotikac.util.FileSettings;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,11 +12,9 @@ import java.util.ArrayList;
 public class KnowledgeController {
 
     private final KnowledgeRepository repository;
-    private final Putusan putusan;
 
-    public KnowledgeController(KnowledgeRepository repository, Putusan putusan) {
+    public KnowledgeController(KnowledgeRepository repository) {
         this.repository = repository;
-        this.putusan = putusan;
     }
 
     public ArrayList<Putusan> tampilkanSemua() {
