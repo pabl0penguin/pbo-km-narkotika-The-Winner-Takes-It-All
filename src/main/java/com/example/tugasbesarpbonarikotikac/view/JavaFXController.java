@@ -49,6 +49,9 @@ public class JavaFXController {
     }
 
     @FXML
+    private Button btnUploadFile;
+
+    @FXML
     public void initialize() {
         tampilkanMenu();
         tampilkanDaftarPutusan();
@@ -235,14 +238,13 @@ public class JavaFXController {
     @FXML
     private void UploadFile() {
         FileChooser chooser = new FileChooser();
-        JFXPanel btnUploadFile = null;
         Stage stage = (Stage) btnUploadFile.getScene().getWindow();
 
         File file = chooser.showOpenDialog(stage);
-
+        System.out.println(file);
+        tampilkanStatistik();
         Controller.importData(file);
-
-        putusanTable.refresh();
+        perbaharuiTabel(Controller.tampilkanSemua());
     }
 
     private void perbaharuiTabel(ArrayList<Putusan> daftar) {
